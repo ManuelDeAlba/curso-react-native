@@ -1,25 +1,32 @@
 import { Pressable, ScrollView, Text, View } from "react-native";
-import { Link, Stack } from "expo-router";
+import { Link, Tabs } from "expo-router";
 
 import { styled } from "nativewind";
 
-import { HomeIcon } from "../components/Icons";
-import Screen from "../components/Screen";
+import { HomeIcon } from "../../components/Icons";
+import Screen from "../../components/Screen";
 
 const StyledPressable = styled(Pressable);
 
 function About(){
     return(
         <Screen>
-            {/* Stack config */}
-            <Stack.Screen
+            {/* Tabs config (disable about icon) */}
+            {/* <Tabs.Screen
                 options={{
+                    headerLeft: () => (
+                        <Link asChild href="/">
+                            <StyledPressable className="flex-row gap-2 items-center active:opacity-50 ml-4 mr-4">
+                                <HomeIcon />
+                            </StyledPressable>
+                        </Link>
+                    ),
                     headerRight: () => {}
                 }}
-            />
+            /> */}
 
             <ScrollView className="container px-8">
-                <Link asChild href="/" className="self-start ml-4 mb-8">
+                <Link asChild href="/" className="self-center mb-4">
                     {/* <Pressable>
                         {({ pressed }) => (
                             <View className="flex-row gap-2 items-center">

@@ -18,7 +18,7 @@ function Layout(){
                     headerStyle: { backgroundColor: "#09f" },
                     headerTintColor: "white",
                     headerLeft: () => {},
-                    headerTitle: "",
+                    headerTitle: "HOMESTOCKESSENTIALS",
                     headerRight: () => (
                         <Link asChild href="/about" className="self-end mr-4">
                             <Pressable className="flex-row gap-2 items-center">
@@ -27,7 +27,9 @@ function Layout(){
                         </Link>
                     )
                 }}
-            />
+            >
+                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            </Stack>
         </View>
     )
 }
