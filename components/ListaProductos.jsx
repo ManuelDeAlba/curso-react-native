@@ -31,7 +31,6 @@ function ListaProductos(){
 
     return(
         <>
-            <Text style={{ ...styles.texto, marginTop: 20 }}>HOMESTOCKESSENTIALS</Text>
             <Text style={{ ...styles.texto, marginBottom: 10 }}>Productos filtrados: {productosFiltrados.length}</Text>
             <TextInput style={styles.input} value={filtro} onChangeText={handleFiltro} placeholder="Filtrar productos..." />
             {
@@ -49,7 +48,7 @@ function ListaProductos(){
                     //     </View>
                     // </ScrollView>
                     <FlatList
-                        style={{ width: "90%", maxHeight: 400 }}
+                        style={{ width: "90%" }}
                         data={productosFiltrados}
                         keyExtractor={producto => producto.id} renderItem={
                             ({ item, index }) => (
