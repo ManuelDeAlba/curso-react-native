@@ -1,6 +1,6 @@
 import { ScrollView, StyleSheet, Text, TextInput, View, ActivityIndicator, FlatList } from "react-native";
 import { useEffect, useState } from 'react';
-import { filtrarElementos } from '../utils';
+import { filtrarElementos } from '../lib/utils';
 import Producto, { ProductoAnimado } from "./Producto";
 
 function ListaProductos(){

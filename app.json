@@ -6,6 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "scheme": "myapp",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -28,6 +29,9 @@
       "eas": {
         "projectId": "7232768d-fb37-418e-8db7-598a59919876"
       }
-    }
+    },
+    "plugins": [
+      "expo-router"
+    ]
   }
 }
