@@ -130,28 +130,57 @@ babel.config.js
 
 # Router
 
+### Docs
+https://docs.expo.dev/router/installation/#quick-start
+
+### Dependencias
+
     npx expo install expo-router react-native-safe-area-context expo-linking react-native-screens expo-constants expo-status-bar
 
-"main": "expo/AppEntry.js", -> "main": "expo-router/entry.js"
+### Entry point
 
-Crear carpeta app
-Crear archivo _layout.js
-Crear archivo index.js
-Crear archivo about.js
-Crear archivo [id].js
-Crear (tabs) -> es una ruta que no toma en cuenta, solo agrupa los archivos
+package.json
+```js
+{
+    "main": "expo/AppEntry.js", -> "main": "expo-router/entry"
+}
+```
+
+### Configuración (deep linking scheme)
+app.json
+```js
+{
+    "scheme": "your-app-scheme"
+}
+```
+
+### Carpeta "app" para el enrutador
+
+Al configurar expo-router dejará de usar App.js
+
+- Crear carpeta app
+- Crear archivo _layout.js
+- Crear archivo index.js
+- Crear archivo about.js
+- Crear archivo [id].js
+- Crear (tabs) -> es una ruta que no toma en cuenta, solo agrupa los archivos
 
 Para ponerlo en el _layout
 
 ```js
 import { Slot, Stack } from 'expo-router';
 
+// Renderiza una sola página, se re-renderizan
+<Slot />
+
+// Renderiza una pila de páginas, no hace re-renderizado
 <Stack
     screenOptions={{
         ...
     }}
 />
 
+// Configuración individual en cada página
 <Stack.Screen
     options={{
         headerStyle: { backgroundColor: "#09f" },
@@ -169,7 +198,7 @@ Para usar en la app
 import { Link } from 'expo-router';
 ```
 
-Para obtener los parámetros
+Hook para obtener los parámetros
 
 ```js
 import { useLocalSearchParams } from 'expo-router';
@@ -177,44 +206,42 @@ import { useLocalSearchParams } from 'expo-router';
 const { id } = useLocalSearchParams();
 ```
 
-Mostrar las dos rutas de la carpeta tabs
+Mostrar las rutas de la carpeta tabs
 
 ```js
 import { Tabs } from 'expo-router';
 
 export default function TabsLayout(){
-    <Tabs
-        screenOptions={{
-            headerShown: false,
-            tabBarStyle: { background: "#000" },
-            tabBarActiveTintColor: "red"
-        }}
-    >
-        <Tabs.Screen
-            name="index"
-            options={{
-                title: "Home",
-                tabBarIcon: ({ color }) => <Icon color={color} />
+    // Se puede usar <Tabs></Tabs> sin necesidad de contenido y crea automáticamente tabs por defecto con las rutas de la carpeta
+    return(
+        <Tabs
+            screenOptions={{
+                headerShown: false,
+                tabBarStyle: { background: "#000" },
+                tabBarActiveTintColor: "red"
             }}
-        />
-        <Tabs.Screen
-            name="about"
-            options={{
-                title: "About",
-                tabBarIcon: ({ color }) => <Icon color={color} />
-            }}
-        />
-    </Tabs>
+        >
+            <Tabs.Screen
+                name="index"
+                options={{
+                    title: "Home",
+                    tabBarIcon: ({ color }) => <Icon color={color} />
+                }}
+            />
+            <Tabs.Screen
+                name="about"
+                options={{
+                    title: "About",
+                    tabBarIcon: ({ color }) => <Icon color={color} />
+                }}
+            />
+        </Tabs>
+    )
 }
 ```
 
 # Iconos
 
-    npm install @expo/vector-icons
-
 https://icons.expo.fyi/Index
 
-
-# Esquema para las rutas
-
-"scheme": "myapp",
+    npm install @expo/vector-icons
