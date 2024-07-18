@@ -205,6 +205,7 @@ import { useLocalSearchParams } from 'expo-router';
 
 const { id } = useLocalSearchParams();
 ```
+### Tabs
 
 Mostrar las rutas de la carpeta tabs
 
@@ -224,20 +225,37 @@ export default function TabsLayout(){
             <Tabs.Screen
                 name="index"
                 options={{
-                    title: "Home",
+                    title: "Inicio",
+                    // Color que viene desde tabBarActiveTintColor
                     tabBarIcon: ({ color }) => <Icon color={color} />
                 }}
             />
             <Tabs.Screen
                 name="about"
                 options={{
-                    title: "About",
-                    tabBarIcon: ({ color }) => <Icon color={color} />
+                    title: "Acerca de",
+                    tabBarIcon: ({ color }) => <Icon color={color} />,
+                    headerLeft: () => (
+                        <Link asChild href="/">
+                            <Pressable className="flex-row gap-2 items-center active:opacity-50 ml-4 mr-4">
+                                <HomeIcon />
+                            </Pressable>
+                        </Link>
+                    ),
+                    headerRight: () => {}
                 }}
             />
         </Tabs>
     )
 }
+```
+
+Quitar los estilos del header del stack en las tabs para usar su propio header
+
+```js
+    <Stack>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+    </Stack>
 ```
 
 # Iconos
